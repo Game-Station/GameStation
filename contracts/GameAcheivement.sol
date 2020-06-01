@@ -115,5 +115,53 @@ contract GameAchievements is Games{
         return(game[_gameId].gameName,game[_gameId].gameIconIpfsHash,game[_gameId].gameAgeLimit,game[_gameId].gameDescription,game[_gameId].gameApiKey,game[_gameId].gameManagerArray, acheivementsOfGame);
     }
     
+    /* @dev
+        -function to delete acheivement of any game.
+        -Input Parameters (game Id, acheivement Id)
+        -only game owner can delete acheivement.
+    */
+    /*function deletAchievement(uint _gameId, uint _achievementId) public onlyGameOwner(_gameId){
+        //require achivement belongs to that game
+        require(achievementToGame[_achievementId] == _gameId);
+        //index = acheivementID
+        uint index = _achievementId;
+        //last acheivement index
+        uint lastAcheivementIndex = achievements.length - 1;
+        //delete acheivement
+        delete achievements[index];
+        //reindex acheivements
+        achievements[index] = achievements[lastAcheivementIndex];
+        //remap acheivemment
+        achievementToGame[index] = achievementToGame[lastAcheivementIndex];
+        //decrease gameAchievementCount
+        gameAchievementCount[_gameId] = gameAchievementCount[_gameId].sub(1);
+        //decrease acheivement length
+        achievements.length--;
+        achievementExists[lastAcheivementIndex] = false;
+    }*/
+
+
+//===============FUNCTION NOT WORKING==========================//   
+    /*function deleteGame(uint _gameId) public onlyGameOwner(_gameId){
+        uint lastGameIndex = game.length - 1;
+        uint[] memory achievementsOfGame = viewAchievements(_gameId);
+        address gameOwner = gameToOwner[_gameId];
+        //delete all the acheivements of that game
+        for(uint i = 0; i<achievementsOfGame.length; i++){
+            deletAchievement(_gameId,achievementsOfGame[i]);
+        }
+        //remove game
+        //delete game[_gameId];
+        //decrease ownerGameCount
+        //ownerGameCount[gameOwner] = ownerGameCount[gameOwner].sub(1);
+        //reindex the last game to deleted game
+        //game[_gameId] = game[lastGameIndex];
+        //remap gameToOwner
+        //gameToOwner[_gameId] = gameToOwner[lastGameIndex];
+        //decrease length of game
+        //game.length--;
+        //gameExists[lastGameIndex] = false;
+    
+    }*/
     
 }
